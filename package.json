@@ -1,0 +1,32 @@
+{
+  "name": "api-wallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./src/* --fix",
+    "start": "ts-node ./src/server.ts",
+    "start:dev": "export APP_ENV=development && ts-node-dev --respawn --transpile-only ./src/server.ts",
+    "start:prod": "export APP_ENV=production && ts-node ./src/server.ts"
+  },
+  "keywords": [],
+  "author": "Daniel Pérez",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mysql2": "github:types/mysql2",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "awilix-express": "^6.0.0",
+    "eslint": "^8.10.0",
+    "mysql2": "^2.3.3",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^12.20.47",
+    "awilix": "^6.1.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
+  }
+}
