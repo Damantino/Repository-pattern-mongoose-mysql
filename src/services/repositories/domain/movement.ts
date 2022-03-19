@@ -1,10 +1,11 @@
-import { MovementType } from "../../../common/enums/movement.type";
+import {Types} from "mongoose";
+import { MovementType } from '../../../common/enums/movement.type';
 
 export interface IMovement {
-    id: number;
-    user_id: number;
-    type: MovementType;
-    amount: number;
-    created_at: Date | null;
-    updated_at: Date | null;
+  id: number | Types.ObjectId;
+  user_id: number | Types.ObjectId;
+  type: MovementType;
+  amount: number;
+  created_at: Date | null;
+  updated_at: Date | null;
 }

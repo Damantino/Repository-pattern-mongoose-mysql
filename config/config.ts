@@ -15,4 +15,7 @@ export const DATA_SOURCES = {
     DB_PORT: process.env.MY_SQL_DB_PORT,
     DB_DATABASE: process.env.MY_SQL_DB_DATABASE,
   },
+  mongodbDataSource: {
+    DB_CONN_URI: process.env.MONGO_DB_URI,
+  },
 };

@@ -1,7 +1,7 @@
 import { createPool } from 'mysql2/promise';
 import { DATA_SOURCES } from '../../../config/config';
 
-const dbconnection = createPool({
+const mysqlDbConnection = createPool({
   host: DATA_SOURCES.mySqlDataSource.DB_HOST,
   user: DATA_SOURCES.mySqlDataSource.DB_USER,
   password: DATA_SOURCES.mySqlDataSource.DB_PASSWORD,
@@ -11,7 +11,7 @@ const dbconnection = createPool({
 });
 
 // Attempt to catch disconnects
-dbconnection.on('connection', function (connection) {
+mysqlDbConnection.on('connection', function (connection) {
   console.log('DB Connection established');
 
   connection.on('error', function (err) {
@@ -22,4 +22,4 @@ dbconnection.on('connection', function (connection) {
   });
 });
 
-export default dbconnection;
+export default mysqlDbConnection;

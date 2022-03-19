@@ -1,9 +1,10 @@
-import { IMovement } from "./domain/movement";
+import { Types } from 'mongoose';
+import { IMovement } from './domain/movement';
 
 export interface IMovementRepository {
-    find(id: number): Promise<IMovement | null>;
-    all(): Promise<IMovement[]>;
-    store(entry: IMovement): Promise<void>;
-    update(entry: IMovement): Promise<void>;
-    remove(id: number): Promise<void>;
+  find(id: number | Types.ObjectId): Promise<IMovement | null>;
+  all(): Promise<IMovement[]>;
+  store(entry: IMovement): Promise<void>;
+  update(entry: IMovement): Promise<void>;
+  remove(id: number | Types.ObjectId): Promise<void>;
 }

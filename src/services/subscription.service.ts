@@ -1,3 +1,4 @@
+import { Types } from 'mongoose';
 import { ApplicationException } from '../common/exceptions/application.exception';
 import {
   ISubscriptionCreateDto,
@@ -11,7 +12,9 @@ export class SubscriptionService {
     private readonly subscriptionRepository: ISubscriptionRepository
   ) {}
 
-  public async find(id: number): Promise<ISubscription | null> {
+  public async find(
+    id: number | Types.ObjectId
+  ): Promise<ISubscription | null> {
     return await this.subscriptionRepository.find(id);
   }
 
@@ -32,7 +35,10 @@ export class SubscriptionService {
     }
   }
 
-  public async update(id: number, entry: ISubscriptionUpdateDto): Promise<void> {
+  public async update(
+    id: number | Types.ObjectId,
+    entry: ISubscriptionUpdateDto
+  ): Promise<void> {
     const originalEntry = await this.subscriptionRepository.find(id);
 
     if (!originalEntry) {
@@ -45,7 +51,7 @@ export class SubscriptionService {
     await this.subscriptionRepository.update(originalEntry);
   }
 
-  public async remove(id: number): Promise<void> {
+  public async remove(id: number | Types.ObjectId): Promise<void> {
     await this.subscriptionRepository.remove(id);
   }
 }

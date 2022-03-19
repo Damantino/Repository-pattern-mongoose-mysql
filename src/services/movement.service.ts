@@ -1,3 +1,4 @@
+import { Types } from 'mongoose';
 import { IMovementRepository } from './repositories/movement.repository';
 import { IBalanceRepository } from './repositories/balance.repository';
 import { IMovement } from './repositories/domain/movement';
@@ -12,7 +13,7 @@ export class MovementService {
     private readonly balanceRepository: IBalanceRepository
   ) {}
 
-  public async find(id: number): Promise<IMovement | null> {
+  public async find(id: number | Types.ObjectId): Promise<IMovement | null> {
     return await this.movementRepository.find(id);
   }
 
