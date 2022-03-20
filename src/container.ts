@@ -1,10 +1,7 @@
 import express = require('express');
 import { asClass, createContainer } from 'awilix';
 import { scopePerRequest } from 'awilix-express';
-import { SubscriptionMysqlRepository } from './services/repositories/impl/mysql/subscription.repository';
 import { SubscriptionService } from './services/subscription.service';
-import { MovementMySQLRepository } from './services/repositories/impl/mysql/movement.repository';
-import { BalanceMysqlRepository } from './services/repositories/impl/mysql/balance.repository';
 import { MovementService } from './services/movement.service';
 import { SubscriptionMongoDBRepository } from './services/repositories/impl/mongodb/subscription.repository';
 import { MovementMongoDBLRepository } from './services/repositories/impl/mongodb/movement.repository';

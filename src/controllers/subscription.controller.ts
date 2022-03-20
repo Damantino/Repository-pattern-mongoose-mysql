@@ -1,3 +1,4 @@
+import { Types } from 'mongoose';
 import { Request, Response } from 'express';
 import { route, GET, POST, PUT, DELETE } from 'awilix-express';
 import { SubscriptionService } from '../services/subscription.service';
@@ -26,9 +27,8 @@ export class SubscriptionController extends BaseController {
   @route('/:id')
   @GET()
   public async find(req: Request, res: Response) {
-    console.log(req.params.id);
     try {
-      const id = parseInt(req.params.id);
+      const id = req.params.id;
 
       const result = await this.subscriptionService.find(id);
 
@@ -36,7 +36,7 @@ export class SubscriptionController extends BaseController {
         res.status(404);
         res.send();
       }
-      
+
       res.send(result);
     } catch (error) {
       this.handleException(error, res);
@@ -63,7 +63,7 @@ export class SubscriptionController extends BaseController {
   @PUT()
   public async update(req: Request, res: Response) {
     try {
-      const id = parseInt(req.params.id);
+      const id = req.params.id;
 
       await this.subscriptionService.update(id, {
         code: req.body.code,
@@ -81,7 +81,7 @@ export class SubscriptionController extends BaseController {
   @DELETE()
   public async remove(req: Request, res: Response) {
     try {
-      const id = parseInt(req.params.id);
+      const id = req.params.id;
 
       await this.subscriptionService.remove(id);
 

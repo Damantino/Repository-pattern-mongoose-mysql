@@ -19,7 +19,7 @@ export class SubscriptionMongoDBRepository implements ISubscriptionRepository {
     return convertedResult as ISubscription[];
   }
 
-  public async find(id: Types.ObjectId): Promise<ISubscription | null> {
+  public async find(id: string): Promise<ISubscription | null> {
     const result = await SubscriptionModel.findById(id);
     if (!result) return null;
     const convertedResult = {
@@ -34,7 +34,7 @@ export class SubscriptionMongoDBRepository implements ISubscriptionRepository {
   }
 
   public async findByUserIdAndCode(
-    user_id: Types.ObjectId,
+    user_id: string,
     code: string
   ): Promise<ISubscription | null> {
     const result = await SubscriptionModel.findOne({
@@ -66,7 +66,7 @@ export class SubscriptionMongoDBRepository implements ISubscriptionRepository {
     );
   }
 
-  public async remove(id: number): Promise<void> {
+  public async remove(id: string): Promise<void> {
     await SubscriptionModel.deleteOne({
       _id: new Types.ObjectId(id),
     });

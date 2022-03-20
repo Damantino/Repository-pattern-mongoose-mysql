@@ -3,12 +3,12 @@ import { ISubscription } from './domain/subscription';
 
 export interface ISubscriptionRepository {
   all(): Promise<ISubscription[]>;
-  find(id: number | Types.ObjectId): Promise<ISubscription | null>;
+  find(id: string): Promise<ISubscription | null>;
   findByUserIdAndCode(
-    user_id: number | Types.ObjectId,
+    user_id: string,
     code: string
   ): Promise<ISubscription | null>;
   store(entry: ISubscription): Promise<void>;
   update(entry: ISubscription): Promise<void>;
-  remove(id: number | Types.ObjectId): Promise<void>;
+  remove(id: string): Promise<void>;
 }

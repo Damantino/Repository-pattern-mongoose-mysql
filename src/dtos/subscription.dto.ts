@@ -1,6 +1,6 @@
 interface ISubscriptionCreateDto {
   code: string;
-  user_id: number;
+  user_id: string;
   amount: number;
   cron: string;
 }

@@ -2,7 +2,7 @@ import { MovementType } from '../common/enums/movement.type';
 
 interface IMovementCreateDto {
   type: MovementType;
-  user_id: number;
+  user_id: string;
   amount: number;
 }
 

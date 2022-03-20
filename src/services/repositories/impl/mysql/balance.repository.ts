@@ -4,10 +4,11 @@ import { IBalanceRepository } from "../../balance.repository";
 import { IBalance } from "../../domain/balance";
 
 export class BalanceMysqlRepository implements IBalanceRepository {
-    public async find(id: number): Promise<IBalance | null> {
+    public async find(id: string): Promise<IBalance | null> {
+
         const [rows] = await connector.execute<RowDataPacket[]>(
             'SELECT * FROM wallet_balance WHERE id = ?',
-            [id]
+            [parseInt(id)]
         );
 
         if (rows.length) {
@@ -17,10 +18,10 @@ export class BalanceMysqlRepository implements IBalanceRepository {
         return null;
     }
 
-    public async findByUserId(userId: number): Promise<IBalance | null> {
+    public async findByUserId(userId: string): Promise<IBalance | null> {
         const [rows] = await connector.execute<RowDataPacket[]>(
             'SELECT * FROM wallet_balance WHERE user_id = ?',
-            [userId]
+            [parseInt(userId)]
         );
 
         if (rows.length) {
@@ -43,7 +44,7 @@ export class BalanceMysqlRepository implements IBalanceRepository {
 
         await connector.execute<ResultSetHeader>(
             'INSERT INTO wallet_balance(user_id, amount, created_at) VALUES(?, ?, ?)',
-            [entry.user_id, entry.amount, now]
+            [parseInt(entry.user_id as string), entry.amount, now]
         );
     }
 
@@ -52,14 +53,14 @@ export class BalanceMysqlRepository implements IBalanceRepository {
 
         await connector.execute<ResultSetHeader>(
             'UPDATE wallet_balance SET user_id = ?, amount = ?, updated_at = ? WHERE id = ?',
-            [entry.user_id, entry.amount, now, entry.id]
+            [parseInt(entry.user_id as string), entry.amount, now, parseInt(entry.id as string)]
         );
     }
 
-    public async remove(id: number): Promise<void> {
+    public async remove(id: string): Promise<void> {
         await connector.execute<ResultSetHeader>(
             'DELETE FROM wallet_balance WHERE id = ?',
-            [id]
+            [parseInt(id)]
         );
     }
 }

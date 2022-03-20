@@ -13,7 +13,7 @@ export class MovementService {
     private readonly balanceRepository: IBalanceRepository
   ) {}
 
-  public async find(id: number | Types.ObjectId): Promise<IMovement | null> {
+  public async find(id: string): Promise<IMovement | null> {
     return await this.movementRepository.find(id);
   }
 

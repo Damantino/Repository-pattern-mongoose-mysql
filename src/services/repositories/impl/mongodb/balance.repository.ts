@@ -4,8 +4,9 @@ import { IBalance } from '../../domain/balance';
 import BalanceModel from './schemas/balance.schema';
 
 export class BalanceMongoDBlRepository implements IBalanceRepository {
-  public async find(id: Types.ObjectId): Promise<IBalance | null> {
-    const result = await BalanceModel.findById(id);
+  public async find(id: string): Promise<IBalance | null> {
+    const balanceId = new Types.ObjectId(id);
+    const result = await BalanceModel.findById(balanceId);
     if (!result) return null;
 
     const sendResult = {
@@ -19,13 +20,15 @@ export class BalanceMongoDBlRepository implements IBalanceRepository {
     return sendResult as IBalance;
   }
 
-  public async findByUserId(userId: Types.ObjectId): Promise<IBalance | null> {
+  public async findByUserId(userId: string): Promise<IBalance | null> {
+    const userObjectId = new Types.ObjectId(userId);
+
     const result = await BalanceModel.findOne({
-      user_id: new Types.ObjectId(userId),
+      user_id: userObjectId,
     });
     if (!result) return null;
     const sendResult = {
-      id: result._id as Types.ObjectId,
+      id: result._id,
       user_id: result.user_id,
       amount: result.amount,
       created_at: result.createdAt,
@@ -62,7 +65,7 @@ export class BalanceMongoDBlRepository implements IBalanceRepository {
     );
   }
 
-  public async remove(id: Types.ObjectId): Promise<void> {
+  public async remove(id: string): Promise<void> {
     await BalanceModel.deleteOne({
       _id: new Types.ObjectId(id),
     });

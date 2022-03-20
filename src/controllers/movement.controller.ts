@@ -28,7 +28,7 @@ export class MovementController extends BaseController {
     public async find(req: Request, res: Response) {
         console.log(req.params.id);
         try {
-            const id = parseInt(req.params.id);
+            const id = req.params.id;
 
             const result = await this.movementService.find(id);
 

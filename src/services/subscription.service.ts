@@ -13,7 +13,7 @@ export class SubscriptionService {
   ) {}
 
   public async find(
-    id: number | Types.ObjectId
+    id: string
   ): Promise<ISubscription | null> {
     return await this.subscriptionRepository.find(id);
   }
@@ -36,7 +36,7 @@ export class SubscriptionService {
   }
 
   public async update(
-    id: number | Types.ObjectId,
+    id: string,
     entry: ISubscriptionUpdateDto
   ): Promise<void> {
     const originalEntry = await this.subscriptionRepository.find(id);
@@ -51,7 +51,7 @@ export class SubscriptionService {
     await this.subscriptionRepository.update(originalEntry);
   }
 
-  public async remove(id: number | Types.ObjectId): Promise<void> {
+  public async remove(id: string): Promise<void> {
     await this.subscriptionRepository.remove(id);
   }
 }
