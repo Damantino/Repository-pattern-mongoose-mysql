@@ -1,4 +1,3 @@
-import { Types } from 'mongoose';
 import { Request, Response } from 'express';
 import { route, GET, POST, PUT, DELETE } from 'awilix-express';
 import { SubscriptionService } from '../services/subscription.service';
